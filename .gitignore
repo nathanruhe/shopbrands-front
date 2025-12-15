@@ -1,42 +1,112 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# ENV (dotenv)
+.env
+.env.*
+!.env.example
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Node / Angular build
+/node_modules/
+/dist/
+/build/
+/out-tsc/
+/www/
+/.bazel-out/
+/.angular/cache/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# --- TypeScript / compilation ---
+*.tsbuildinfo
 
-# IDEs and editors
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Coverage / reports / test output
+/coverage/
+/.nyc_output/
+/test-results/
+/reports/
+/coverage/
+/reports/
+
+# Test / e2e / cypress / playwright
+cypress/videos/
+cypress/screenshots/
+cypress/reports/
+playwright-report/
+playwright-traces/
+/cypress/screenshots/**
+/cypress/videos/**
+
+# IDEs / editors
+# JetBrains
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 
-# Visual Studio Code
+# VS Code: ignorar todo salvo archivos de configuración de equipo que se comparten
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+# Otros editores
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
 
-# System files
+# OS / Misc
 .DS_Store
 Thumbs.db
+.sass-cache/
+connect.lock
+libpeerconnection.log
+testem.log
+.history/
+.vs/
+
+# Package managers / caches
+.pnpm-store/
+.pnp.*
+.cache/
+.cache-loader/
+
+# Yarn v3 specific
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Secrets / certs / keys
+*.key
+*.pem
+*.p12
+*.jks
+credentials.json
+google-services.json
+GoogleService-Info.plist
+
+# Optional / local tooling / generated
+.vite/
+.vitepress/
+.next/
+.nuxt/
+.temp
+.dist
+.output
+.serverless/
+.docusaurus/
+.fusebox/
+.dynamodb/
+.firebase/
+*.tgz
+
+# Docs / generated OpenAPI (opcional)
+docs/openapi.json
+docs/openapi.yaml.bak

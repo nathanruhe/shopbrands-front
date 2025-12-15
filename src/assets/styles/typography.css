@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;600&display=swap');
+
+html {
+    font-size: 16px;
+    color: var(--color-ink);
+    background-color: var(--color-bg);
+    font-family: var(--font-primary);
+    line-height: 1.45;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+    margin-bottom: var(--space-sm);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(1.6rem, 2.4vw, 2rem); font-weight: 600; }
+h2 { font-size: 1.6rem; font-weight: 600; }
+h3 { font-size: 1.2rem; font-weight: 500; }
+h4 { font-size: 1rem; font-weight: 500; }
+
+p, label, small {
+    color: var(--color-subtle);
+    font-size: var(--fs-sm);
+}
+
+.lead {
+    font-size: var(--fs-lg);
+    color: var(--color-ink);
+    margin-bottom: var(--space-md);
+}
+
+.kicker {
+    text-transform: uppercase;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.14em;
+    color: var(--color-subtle);
+    display: inline-block;
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.4rem; }
+    .lead { font-size: 1rem; }
+}
