@@ -1,2 +1,6 @@
 @import 'src/assets/styles/global.css';
-/* Aquí puedes añadir overrides locales de app */
+@import 'src/assets/styles/reset.css';
+@import 'src/assets/styles/variables.css';
+@import 'src/assets/styles/typography.css';
+@import 'src/assets/styles/layout.css';
+@import 'src/assets/styles/utilities.css';

@@ -1,0 +1,10 @@
+<button
+    class="ui-button"
+    [class.primary]="variant === 'primary'"
+    [class.secondary]="variant === 'secondary'"
+    [class.ghost]="variant === 'ghost'"
+    [attr.type]="type"
+    [disabled]="disabled"
+>
+    <ng-content></ng-content>
+</button>

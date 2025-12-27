@@ -1,0 +1,42 @@
+<div class="ui-card">
+    <span class="ui-card__ref">Ref: {{ sku }}</span>
+
+    <div class="ui-card__image">
+        <img src="{{image_url}}" alt="">
+    </div>
+
+    <div class="ui-card__container">
+        <span class="ui-card__name">{{ name }}</span>
+        <span class="ui-card__description">{{ description }}</span>
+
+        <div class="ui-card__contents">
+            <div class="ui-card__contents__values">
+                <span class="ui-card__text">Stock: {{ stock }}</span>
+                <span class="ui-card__text">Talla: {{ size }}</span>
+                <span class="ui-card__text">Color: {{ color }}</span>
+            </div>
+
+            <div class="ui-card__contents__price">
+                <!-- SIN DESCUENTO -->
+                <span *ngIf="!discountedPrice" class="ui-card__price">
+                    {{ price }}€
+                </span>
+
+                <!-- CON DESCUENTO -->
+                <ng-container *ngIf="discountedPrice">
+                    <span class="ui-card__price ui-card__price--old">
+                        {{ price }}€
+                    </span>
+
+                    <span class="ui-card__discount">
+                        {{ discountedPrice }}€
+                    </span>
+
+                    <span class="ui-card__badge">
+                        -{{ discount }}%
+                    </span>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

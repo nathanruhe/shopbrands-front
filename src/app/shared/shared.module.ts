@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /** Layouts */
 import { HeaderComponent } from './layouts/header/header.component';
@@ -19,8 +20,10 @@ import { HighlightDirective } from './directives/highlight.directive';
 /** Pipes */
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
+/** Components */
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+
 @NgModule({
-    imports: [CommonModule],
     declarations: [
         // layouts
         HeaderComponent,
@@ -36,9 +39,18 @@ import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
         // directives & pipes
         HighlightDirective,
-        CurrencyFormatPipe
+        CurrencyFormatPipe,
+
+        // components
+        LoadingSpinnerComponent
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule   
     ],
     exports: [
+        ReactiveFormsModule,
+
         // layouts
         HeaderComponent,
         FooterComponent,
@@ -53,7 +65,10 @@ import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
         // directives & pipes
         HighlightDirective,
-        CurrencyFormatPipe
+        CurrencyFormatPipe,
+
+        // components
+        LoadingSpinnerComponent
     ]
 })
 export class SharedModule {}

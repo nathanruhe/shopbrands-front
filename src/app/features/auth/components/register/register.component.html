@@ -1,0 +1,81 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
+
+    <h2>Registrarse</h2>
+
+    <div>
+        <app-ui-input
+            label="Nombre *"
+            type="text"
+            placeholder="añada su nombre"
+            [control]="form.controls.first_name">
+        </app-ui-input>
+    </div>
+
+    <div>
+        <app-ui-input
+            label="Apellidos *"
+            type="text"
+            placeholder="añada sus apellidos"
+            [control]="form.controls.last_name">
+        </app-ui-input>
+    </div>
+
+    <div>
+        <app-ui-input
+            label="Email *"
+            type="email"
+            placeholder="añada su email válido"
+            [control]="form.controls.email">
+        </app-ui-input>
+    </div>
+
+    <div>
+        <app-ui-input
+            label="Contraseña *"
+            type="password"
+            placeholder="añada una contraseña segura"
+            [control]="form.controls.password">
+        </app-ui-input>
+    </div>
+
+    <div>
+        <app-ui-input
+            label="Repetir contraseña *"
+            type="password"
+            placeholder="repita la contraseña"
+            [control]="form.controls.password_confirm">
+        </app-ui-input>
+    </div>
+
+    <app-ui-input
+        label="Teléfono"
+        type="text"
+        placeholder="añada su teléfono (opcional)"
+        [control]="form.controls.phone">
+    </app-ui-input>
+
+    <div class="error">
+        <p *ngIf="form.errors?.['mismatch'] && form.touched">
+            Las contraseñas no coinciden
+        </p>
+    </div>
+
+    <div class="response">
+        <p class="success" *ngIf="message$ | async as message">
+            {{ message }}
+        </p>
+        
+        <p class="error" *ngIf="error$ | async as error">
+            {{ error }}
+        </p>
+    </div>
+
+    <app-ui-button class="btn"
+        type="submit"
+        variant="primary"
+        [disabled]="form.invalid"
+    >
+        Registrarse
+    </app-ui-button>
+
+</form>

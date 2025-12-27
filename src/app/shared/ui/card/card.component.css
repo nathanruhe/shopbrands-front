@@ -1,0 +1,109 @@
+.ui-card {
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 0 3px 5px black;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ui-card__ref {
+    color: rgb(105, 105, 105);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.ui-card__image {
+    height: 60%;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+}
+
+.ui-card__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.ui-card__container {
+    background: rgb(255, 231, 231);
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.ui-card__name {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.ui-card__description {
+    font-size: var(--fs-sm);
+}
+
+.ui-card__contents {
+    display: flex;
+    height: 40%;
+    margin-top: auto;
+    padding: 0 20px;
+}
+
+.ui-card__contents__values {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.ui-card__contents__price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.ui-card__text {
+    font-weight: bold;
+    color: rgb(105, 105, 105);
+}
+
+.ui-card__price {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.ui-card__price--old {
+    color: #c0392b;
+    text-decoration: line-through;
+    font-size: 22px;
+    opacity: 0.7;
+}
+
+.ui-card__discount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.ui-card__badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background: #d14a3b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+}

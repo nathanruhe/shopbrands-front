@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="forgot-form">
+
+    <h2>Restablecer contraseña</h2>
+
+    <div>
+        <app-ui-input
+            label="Email *"
+            type="email"
+            placeholder="añada su email válido"
+            [control]="form.controls.email">
+        </app-ui-input>
+    </div>
+
+    <div class="response">
+        <p class="success" *ngIf="message$ | async as message">
+            {{ message }}
+        </p>
+        
+        <p class="error" *ngIf="error$ | async as error">
+            {{ error }}
+        </p>
+    </div>
+
+    <app-ui-button class="btn"
+        type="submit"
+        variant="primary"
+        [disabled]="form.invalid"
+    >
+        Entrar
+    </app-ui-button>
+
+</form>

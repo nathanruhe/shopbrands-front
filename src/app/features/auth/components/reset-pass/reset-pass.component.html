@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="reset-form">
+
+    <h2>Restablecer contraseña</h2>
+
+    <app-ui-input
+        label="Nueva contraseña *"
+        type="password"
+        placeholder="Introduce una nueva contraseña"
+        [control]="form.controls.password">
+    </app-ui-input>
+
+    <app-ui-input
+        label="Repetir contraseña *"
+        type="password"
+        placeholder="Repite la contraseña"
+        [control]="form.controls.password_confirm">
+    </app-ui-input>
+
+    <p class="error" *ngIf="form.errors?.['mismatch'] && form.touched">
+        Las contraseñas no coinciden
+    </p>
+
+    <div class="response">
+        <p class="success" *ngIf="message$ | async as message">
+            {{ message }}
+        </p>
+        
+        <p class="error" *ngIf="error$ | async as error">
+            {{ error }}
+        </p>
+    </div>
+
+    <app-ui-button
+        type="submit"
+        variant="primary"
+        [disabled]="form.invalid">
+        Cambiar contraseña
+    </app-ui-button>
+
+</form>

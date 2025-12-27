@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+
+    <h2>Conectar</h2>
+
+    <div>
+        <app-ui-input
+            label="Email *"
+            type="email"
+            placeholder="añada su email válido"
+            [control]="form.controls.email">
+        </app-ui-input>
+    </div>
+
+    <div>
+        <app-ui-input
+            label="Contraseña *"
+            type="password"
+            placeholder="añada una contraseña segura"
+            [control]="form.controls.password">
+        </app-ui-input>
+    </div>
+
+    <div class="error">
+        <p *ngIf="form.errors?.['mismatch'] && form.touched">
+            Las contraseñas no coinciden
+        </p>
+    </div>
+
+    <p *ngIf="error$ | async as error" class="error">
+        {{ error }}
+    </p>
+
+    <app-ui-button class="btn"
+        type="submit"
+        variant="primary"
+        [disabled]="form.invalid"
+    >
+        Entrar
+    </app-ui-button>
+
+</form>

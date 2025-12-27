@@ -1,0 +1,31 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 420px;
+    margin: 0 auto;
+
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 5%;
+    margin-bottom: 50px;
+}
+
+h2 {
+    text-align: center;
+}
+
+div {
+    height: 90px;
+}
+
+.error {
+    font-size: var(--fs-sm);
+    color: var(--color-danger);
+    margin: -10px auto 10px;
+    height: 20px;
+}
+
+.btn {
+    margin: 0 auto;
+}

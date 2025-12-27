@@ -11,6 +11,11 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
 
 import { SharedModule } from '../../shared/shared.module';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducer } from './store/auth.reducer';
+import { AuthEffects } from './store/auth.effects';
+
 @NgModule({
     declarations: [
         LoginComponent,
@@ -23,6 +28,8 @@ import { SharedModule } from '../../shared/shared.module';
         ReactiveFormsModule,
         SharedModule,
         AuthRoutingModule,
+        StoreModule.forFeature('auth', authReducer),
+        EffectsModule.forFeature([AuthEffects])
     ]
 })
 export class AuthModule {}
