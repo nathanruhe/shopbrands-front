@@ -16,11 +16,14 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
-// import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+
+import { LoadingOverlayComponent } from './core/components/loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoadingOverlayComponent  
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
