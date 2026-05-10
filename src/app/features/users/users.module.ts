@@ -11,6 +11,15 @@ import { UserSegurityComponent } from './components/user-segurity/user-segurity.
 
 import { SharedModule } from '../../shared/shared.module';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { usersReducer } from './store/users.reducer';
+import { UsersEffects } from './store/users.effects';
+
+// OTROS IMPORTS PARA MOSTRAR EN EL PERFIL DEL USUARIO
+// para mostrar los pedidos del usuario en su perfil, he de importar el modulo de pedidos, para usar el componente de historial de pedidos que se encuentra en ese modulo
+import { OrdersModule } from '../orders/orders.module';
+
 @NgModule({
     declarations: [
         UserProfileComponent,
@@ -23,6 +32,11 @@ import { SharedModule } from '../../shared/shared.module';
         ReactiveFormsModule,
         SharedModule,
         UsersRoutingModule,
-    ]
+        StoreModule.forFeature('users', usersReducer),
+        EffectsModule.forFeature([UsersEffects]),
+        
+        // IMPORTACION DEL MODULO DE PEDIDOS PARA MOSTRAR LOS PEDIDOS DEL USUARIO EN SU PERFIL
+        OrdersModule
+    ] 
 })
 export class UsersModule {}

@@ -1,0 +1,29 @@
+<div class="product-detail container">
+    <div *ngIf="loading" class="muted">Cargando...</div>
+    <div *ngIf="!loading && !product" class="error">Producto no encontrado.</div>
+
+    <div *ngIf="product" class="detail-grid card">
+        <div class="media">
+            <img *ngIf="product.image_url" [src]="product.image_url" [alt]="product.name" />
+            <div *ngIf="!product.image_url" class="placeholder">Sin imagen</div>
+        </div>
+
+        <div class="info">
+            <h1 class="title">{{ product.name }}</h1>
+            <div class="price">{{ product.price | currency }}</div>
+            <div class="sku" *ngIf="product.sku">SKU: {{ product.sku }}</div>   <!-- SKU solo se muestra si existe o quizas no sea necesario -->
+            <div class="size">Talla: {{ product.size }}</div>
+            <div class="color">Color: {{ product.color }}</div>
+            <div class="stock" [ngClass]="{ 'out': (product.stock ?? 0) <= 0 }">
+                Stock: {{ product.stock ?? 0 }}
+            </div>
+
+            <p class="desc" *ngIf="product.description">{{ product.description }}</p>
+
+            <div class="actions">
+                <app-ui-button variant="primary" (click)="addToCart()" [disabled]="(product.stock ?? 0) <= 0">Añadir al carrito</app-ui-button>
+                <app-ui-button variant="ghost" (click)="goBack()">Volver</app-ui-button>
+            </div>
+        </div>
+    </div>
+</div>

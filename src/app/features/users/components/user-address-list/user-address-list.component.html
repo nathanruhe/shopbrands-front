@@ -1,0 +1,64 @@
+<div class="addresses-page card">
+  <div class="card-header">
+    <h2 class="card-title">Mis direcciones</h2>
+    <button class="btn primary" (click)="openNew()">Añadir dirección</button>
+  </div>
+
+  <p *ngIf="loading" class="muted">Cargando direcciones...</p>
+  
+  <p *ngIf="!loading && addresses.length === 0" class="muted">
+    No tienes direcciones guardadas
+  </p>
+
+  <!-- LISTADO DE DIRECCIONES -->
+  <ul class="addr-list" *ngIf="!loading && addresses.length">
+    <li *ngFor="let a of addresses" class="addr-item" [class.is-default]="a.is_default">
+      
+      <div class="addr-main">
+        <div class="addr-header">
+          <strong>{{ a.first_name }} {{ a.last_name }}</strong>
+          <span *ngIf="a.is_default" class="badge-default">⭐ Dirección principal</span>
+        </div>
+        
+        <div>{{ a.phone || '-' }}</div>
+        <div>{{ a.street }}, {{ a.postal_code }}, {{ a.city }}, {{ a.province }}, {{ a.country }}</div>
+        <div class="type-tag">{{ a.type }}</div>
+      </div>
+
+      <div class="addr-actions">
+        <div> <!-- Botón para marcar como principal -->
+          <button 
+            *ngIf="!a.is_default" 
+            class="btn link small" 
+            (click)="makeDefault(a)">
+            ⭐ Marcar Principal
+          </button>
+        </div>
+        <button class="btn edit small" (click)="openEdit(a)">Editar</button>
+        <button class="btn danger small" (click)="remove(a)">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- FORMULARIO -->
+  <section class="form-panel" *ngIf="showForm">
+    <h3>{{ editing ? 'Editar dirección' : 'Nueva dirección' }}</h3>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+      <input formControlName="first_name" placeholder="Nombre" />
+      <input formControlName="last_name" placeholder="Apellido" />
+      <input formControlName="street" placeholder="Calle" />
+      <input formControlName="city" placeholder="Ciudad" />
+      <input formControlName="province" placeholder="Provincia" />
+      <input formControlName="postal_code" placeholder="Código postal" />
+      <input formControlName="country" placeholder="País" />
+      <input formControlName="phone" placeholder="Teléfono" />
+      <!-- <input formControlName="type" placeholder="Tipo" /> -->
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit" [disabled]="loading">Guardar</button>
+        <button class="btn ghost" type="button" (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,15 @@
+<section class="faq-container">
+  <div class="faq-header">
+    <h1>Preguntas Frecuentes</h1>
+    <p>
+      Encuentra respuestas rápidas sobre pedidos, envíos, devoluciones y más.
+    </p>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item" *ngFor="let faq of faqs">
+      <h3>{{ faq.question }}</h3>
+      <p>{{ faq.answer }}</p>
+    </div>
+  </div>
+</section>

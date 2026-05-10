@@ -1,0 +1,89 @@
+<!-- PERFIL -->
+<div class="user-container" *ngIf="user$ | async as user; else loadingOrError">
+
+    <h2>Perfil de Usuario</h2>
+
+    <app-ui-avatar class="avatar"
+        type="submit"
+        variant="primary"
+    >
+        Editar Perfil
+    </app-ui-avatar>
+
+    <div class="user-profile">
+        <span><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</span>
+        <span><strong>Email:</strong> {{ user.email }}</span>
+        <span><strong>Rol:</strong> {{ user.role }}</span>
+        <span><strong>Teléfono:</strong> {{ user.phone }}</span>
+    </div>
+
+    <div class="btn">
+        <app-ui-button
+            type="submit"
+            variant="primary"
+            
+        >
+            Editar Perfil
+        </app-ui-button>
+
+        <app-ui-button
+            type="submit"
+            variant="secondary"
+            
+        >
+            Eliminar cuenta
+        </app-ui-button>
+    </div>
+
+</div>
+
+
+<!-- ERROR AL CARGAR PERFIL -->
+<ng-template #loadingOrError>
+    <div *ngIf="loading$ | async" class="spinner-container">
+        <app-loading-spinner [size]="40"></app-loading-spinner>
+    </div>
+    <p *ngIf="loading$ | async">Cargando perfil...</p>
+    <p *ngIf="error$ | async as err" class="error">Error: {{ err }}</p>
+</ng-template>
+
+
+<!-- ACTIONS -->
+<div class="actions">
+    <app-ui-button
+        [variant]="activeSection === 'addresses' ? 'primary' : 'ghost'"
+        (click)="setActiveSection('addresses')">
+        Direcciones
+    </app-ui-button>
+
+    <app-ui-button
+        [variant]="activeSection === 'orders' ? 'primary' : 'ghost'"
+        (click)="setActiveSection('orders')">
+        Pedidos
+    </app-ui-button>
+
+    <app-ui-button
+        [variant]="activeSection === 'security' ? 'primary' : 'ghost'"
+        (click)="setActiveSection('security')">
+        Seguridad
+    </app-ui-button>
+</div>
+
+
+<!-- LISTA DE DIRECCIONES -->
+<div class="user-adresses" *ngIf="activeSection === 'addresses'">
+    <app-user-address-list></app-user-address-list>
+</div>
+
+<!-- LISTA DE PEDIDOS -->
+<div class="user-orders" *ngIf="activeSection === 'orders'">
+    <!-- he de crear el diseño y datos de los pedidos para reflejarlos aqui -->
+    <app-order-history></app-order-history>
+</div>
+
+<!-- SEGURIDAD "CAMBIO DE CONTRASEÑA" -->
+<div class="user-segurity" *ngIf="activeSection === 'security'">
+    <h2>Seguridad</h2>
+    <!-- he de crear el diseño y datos de la seguridad para reflejarlos aqui -->
+    <app-ui-card></app-ui-card>   <!-- CAMBIAR POR LA SEGURIDAD -->
+</div>

@@ -7,7 +7,7 @@ import { UserAddressListComponent } from './components/user-address-list/user-ad
 import { UserSegurityComponent } from './components/user-segurity/user-segurity.component';
 
 const routes: Routes = [
-    { path: '', component: UserProfileComponent },
+    { path: 'me', component: UserProfileComponent },
     { path: 'edit', component: UserEditComponent },
     { path: 'addresses', component: UserAddressListComponent },
     { path: 'security', component: UserSegurityComponent }

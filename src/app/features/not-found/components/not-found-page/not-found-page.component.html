@@ -1,0 +1,41 @@
+<section class="not-found-page">
+
+    <div class="container">
+
+        <div class="not-found-card">
+
+            <span class="badge mb-md">
+                Error 404
+            </span>
+
+            <h1 class="title">
+                Página no encontrada
+            </h1>
+
+            <p class="lead description">
+                La página que buscas no existe o ha sido movida.
+                Descubre las últimas tendencias de moda premium en TradeBrands.
+            </p>
+
+            <div class="actions">
+
+                <button class="btn btn-primary"
+                        (click)="navigateHome()">
+                    Volver al inicio
+                </button>
+
+                <a routerLink="/products"
+                   class="btn btn-secondary">
+                    Explorar tienda
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="background-circle circle-left"></div>
+    <div class="background-circle circle-right"></div>
+
+</section>

@@ -14,6 +14,15 @@ export interface UpdateProfile {
     phone?: string;
 }
 
-export interface DeleteResponse {
+export interface ChangePassword {
+    current_password: string;
+    new_password: string;
+}
+
+export interface DeleteProfile {
+    message: string;
+}
+
+export interface MessageResponse {
     message: string;
 }

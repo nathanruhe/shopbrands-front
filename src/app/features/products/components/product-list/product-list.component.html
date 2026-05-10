@@ -1,0 +1,158 @@
+<div class="product-detail container">
+    <div *ngIf="loading" class="muted">Cargando...</div>
+    <h2>Descubre todos nuestros productos</h2>
+
+    <section class="filters">
+        <div class="filters-header">
+            <div>
+                <span class="kicker">Catálogo</span>
+                <h3>Filtrar productos</h3>
+            </div>
+
+            <div class="filter-info">
+                <span>Límite: {{ limit }}</span>
+                <span>Offset: {{ offset }}</span>
+            </div>
+        </div>
+
+        <div class="filters-body">
+            <div class="filter-group">
+                <label for="category-all-select">Todas</label>
+                <select id="category-all-select" (change)="onCategoryChange($event)">
+                    <option value="" [selected]="selectedOptionValue === ''">Selecciona...</option>
+                    <option value="all:root" [selected]="selectedOptionValue === 'all:root'">Todas</option>
+                    <optgroup label="Subcategorías">
+                        <option
+                            *ngFor="let id of getSubcategoryIdsForMain(null)"
+                            [value]="'all:sub:' + id"
+                            [selected]="selectedOptionValue === 'all:sub:' + id"
+                        >
+                            {{ getCategoryName(id) }}
+                        </option>
+                    </optgroup>
+                    <optgroup label="Accesorios">
+                        <option
+                            *ngFor="let id of getAccessorySubcategoryIdsForMain(null)"
+                            [value]="'all:accessory:' + id"
+                            [selected]="selectedOptionValue === 'all:accessory:' + id"
+                        >
+                            {{ getCategoryName(id) }}
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="category-men-select">Hombre</label>
+                <select id="category-men-select" (change)="onCategoryChange($event)">
+                    <option value="" [selected]="selectedOptionValue === ''">Selecciona...</option>
+                    <option value="main:1:root" [selected]="selectedOptionValue === 'main:1:root'">Hombre</option>
+                    <optgroup label="Subcategorías Hombre">
+                        <option
+                            *ngFor="let id of getSubcategoryIdsForMain(1)"
+                            [value]="'main:1:sub:' + id"
+                            [selected]="selectedOptionValue === 'main:1:sub:' + id"
+                        >
+                            {{ getCategoryName(id) }}
+                        </option>
+                    </optgroup>
+                    <optgroup label="Accesorios Hombre">
+                        <option
+                            *ngFor="let id of getAccessorySubcategoryIdsForMain(1)"
+                            [value]="'main:1:accessory:' + id"
+                            [selected]="selectedOptionValue === 'main:1:accessory:' + id"
+                        >
+                            {{ getCategoryName(id) }}
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="category-women-select">Mujer</label>
+                <select id="category-women-select" (change)="onCategoryChange($event)">
+                    <option value="" [selected]="selectedOptionValue === ''">Selecciona...</option>
+                    <option value="main:2:root" [selected]="selectedOptionValue === 'main:2:root'">Mujer</option>
+                    <optgroup label="Subcategorías Mujer">
+                        <option
+                            *ngFor="let id of getSubcategoryIdsForMain(2)"
+                            [value]="'main:2:sub:' + id"
+                            [selected]="selectedOptionValue === 'main:2:sub:' + id"
+                        >
+                            {{ getCategoryName(id) }}
+                        </option>
+                    </optgroup>
+                    <optgroup label="Accesorios Mujer">
+                        <option
+                            *ngFor="let id of getAccessorySubcategoryIdsForMain(2)"
+                            [value]="'main:2:accessory:' + id"
+                            [selected]="selectedOptionValue === 'main:2:accessory:' + id"
+                        >
+                            {{ getCategoryName(id) }}
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="filter-sidebar">
+                <div class="filter-actions">
+                    <button type="button" class="secondary-btn" (click)="clearFilters()">
+                        Ver todos
+                    </button>
+                </div>
+
+                <div class="pagination">
+                    <button
+                        type="button"
+                        class="pagination-btn"
+                        (click)="previousPage()"
+                        [disabled]="offset === 0"
+                    >
+                        Anterior
+                    </button>
+
+                    <button
+                        type="button"
+                        class="pagination-btn"
+                        (click)="nextPage()"
+                    >
+                        Siguiente
+                    </button>
+                </div>
+
+                <div class="current-filter">
+                    <span *ngIf="selectedMainCategoryId || selectedSubcategoryId; else allCategories">
+                        Filtrando por:
+                        <strong>{{ selectedCategoryNames }}</strong>
+                    </span>
+
+                    <ng-template #allCategories>
+                        Mostrando todos los productos
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="list">
+        <div *ngFor="let p of product" class="product" (click)="viewProduct(p.id)">
+            <app-ui-card
+                [name]="p.name"
+                [description]="p.description"
+                [image_url]="p.image_url"
+                [price]="p.price"
+                [stock]="p.stock"
+                [size]="p.size"
+                [color]="p.color"
+                [sku]="p.sku"
+            >
+            </app-ui-card>
+
+            <div class="actions">
+                <app-ui-button variant="primary" (click)="addToCart(p)" [disabled]="(p.stock ?? 0) <= 0">Añadir al carrito</app-ui-button>
+            </div>
+        </div>
+        <!-- <div *ngIf="!loading && product?.length === 0" class="error">No se encontraron productos.</div> -->
+        <div *ngIf="!loading && product?.length === 0" class="error">No hay mas productos para mostrar.</div>
+    </div>
+</div>

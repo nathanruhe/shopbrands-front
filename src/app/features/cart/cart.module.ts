@@ -21,6 +21,6 @@ import { SharedModule } from '../../shared/shared.module';
         ReactiveFormsModule,
         SharedModule,
         CartRoutingModule,
-    ]
+    ],
 })
 export class CartModule {}

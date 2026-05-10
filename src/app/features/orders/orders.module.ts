@@ -23,6 +23,14 @@ import { SharedModule } from '../../shared/shared.module';
         ReactiveFormsModule,
         OrdersRoutingModule,
         SharedModule
+    ],
+
+    // exporto los componentes para poder usarlos en el perfil del usuario, aunque no se si es necesario exportarlos todos, o solo el order history e invoice, que son los que se mostraran en el perfil
+    exports: [
+        OrderFormComponent,
+        OrderHistoryComponent,
+        OrderConfirmationComponent,
+        OrderInvoiceComponent
     ]
 })
 export class OrdersModule {}
